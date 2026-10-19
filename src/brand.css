@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: #333333;
+  --card: oklch(1 0 0);
+  --card-foreground: #333333;
+  --popover: oklch(1 0 0);
+  --popover-foreground: #333333;
+  --primary: #0A2346;
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: #00BFA6;
+  --secondary-foreground: #0A2346;
+  --muted: #F0F4F8;
+  --muted-foreground: #666666;
+  --accent: #F0F4F8;
+  --accent-foreground: #0A2346;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #00BFA6;
+  --cta: #FF7F00;
+  --cta-foreground: #ffffff;
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-cta: var(--cta);
+  --color-cta-foreground: var(--cta-foreground);
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+.bg-brand-navy { background-color: #0A2346; }
+.text-brand-navy { color: #0A2346; }
+.bg-brand-teal { background-color: #00BFA6; }
+.text-brand-teal { color: #00BFA6; }
+.bg-brand-orange { background-color: #FF7F00; }
+.text-brand-orange { color: #FF7F00; }
+.bg-brand-gray-light { background-color: #F0F4F8; }
+
+/* Custom Logo Styling */
+.logo-img {
+  /* Removed mix-blend-mode: multiply as it causes visibility issues on dark backgrounds */
+  transition: all 0.3s ease;
+  display: block;
+  max-width: 100%;
+}
+
+/* Header Logo Sizes (50% increase from h-20 / h-28) */
+.header-logo {
+  height: 120px !important; /* 80px * 1.5 */
+  width: auto !important;
+}
+
+@media (min-width: 768px) {
+  .header-logo {
+    height: 168px !important; /* 112px * 1.5 */
+  }
+}
+
+/* Footer Logo Sizes (50% increase from h-28) */
+.footer-logo {
+  height: 168px !important; /* 112px * 1.5 */
+  width: auto !important;
+  /* Ensure logo is visible on dark navy background */
+  filter: brightness(0) invert(1); /* Forces logo to be white for dark background visibility */
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.footer-logo-container img {
+  filter: brightness(1.1); /* Slight boost for dark backgrounds */
+}
+
+/* Top Banner Styles */
+.top-banner {
+  position: relative;
+  min-height: clamp(160px, 25vw, 280px);
+}
+
+/* Banner Logo Styles */
+.banner-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
